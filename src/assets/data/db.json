@@ -1,0 +1,28 @@
+{
+  "pessoas": [
+    {
+      "id": 2,
+      "nome": "Teste 2",
+      "email": "teste@teste.com",
+      "cpf": 12345678910,
+      "telefonePrincipal": 0,
+      "telefoneRecado": 0
+    },
+    {
+      "id": 3,
+      "nome": "Teste 3",
+      "email": "teste@teste.com",
+      "cpf": 12345678910,
+      "telefonePrincipal": 8532345678,
+      "telefoneRecado": 8532345678
+    },
+    {
+      "nome": "MARCOS",
+      "email": "MESTRE@MESTRE.COM.BR",
+      "cpf": 123456789,
+      "telefonePrincipal": 212121252525,
+      "telefoneRecado": 212125252525,
+      "id": 4
+    }
+  ]
+}
