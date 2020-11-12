@@ -1,0 +1,115 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Cadastro de Endereço</li>
+    </ol>
+</nav>
+<div class="container">
+    <div class="card list-endereco">
+        <h5 class="card-header">Lista de Endereços</h5>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">CEP</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Cidade</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">Logradouro</th>
+                        <th scope="col">Número</th>
+                        <th scope="col">Complemento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let endereco of enderecos">
+                        <td>{{endereco.id}}</td>
+                        <td>{{endereco.cep}}</td>
+                        <td>{{endereco.estado}}</td>
+                        <td>{{endereco.cidade}}</td>
+                        <td>{{endereco.bairro}}</td>
+                        <td>{{endereco.logradouro}}</td>
+                        <td>{{endereco.numero}}</td>
+                        <td>{{endereco.complemento}}</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm ml-1"
+                                (click)="editEndereco(endereco)">Editar</button>
+                            <button type="button" class="btn btn-danger btn-sm ml-1"
+                                (click)="deleteEndereco(endereco)">Deletar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card add-endereco">
+        <h5 class="card-header">Adicionar/Atualizar Endereço</h5>
+        <div class="card-body">
+            <form id="add-form" (ngSubmit)="f.form.valid && saveEndereco(f)" #f="ngForm" novalidate>
+                <div class="form-group">
+                    <label for="cep">CEP</label>
+                    <input type="text" [(ngModel)]="endereco.cep" id="cep" name="cep" #cep="ngModel" required
+                        class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cep.invalid }"
+                        placeholder="Digite o CEP">
+                    <div *ngIf="f.submitted && cep.invalid" class="invalid-feedback">
+                        <div *ngIf="cep.errors.required">CEP é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <input type="text" [(ngModel)]="endereco.estado" id="estado" name="estado" #estado="ngModel" required
+                        class="form-control" [ngClass]="{ 'is-invalid': f.submitted && estado.invalid }"
+                        placeholder="Digite o estado">
+                    <div *ngIf="f.submitted && estado.invalid" class="invalid-feedback">
+                        <div *ngIf="estado.errors.required">Estado é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cidade">Cidade</label>
+                    <input type="text" [(ngModel)]="endereco.cidade" id="cidade" name="cidade" #cidade="ngModel" required
+                        class="form-control" [ngClass]="{ 'is-invalid': f.submitted && cidade.invalid }"
+                        placeholder="Digite a Cidade">
+                    <div *ngIf="f.submitted && cidade.invalid" class="invalid-feedback">
+                        <div *ngIf="cidade.errors.required">Cidade é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bairro">Bairro</label>
+                    <input type="text" [(ngModel)]="endereco.bairro" id="bairro"
+                        name="bairro" #bairro="ngModel" required class="form-control"
+                        [ngClass]="{ 'is-invalid': f.submitted && bairro.invalid }"
+                        placeholder="Digite o Bairro">
+                    <div *ngIf="f.submitted && bairro.invalid" class="invalid-feedback">
+                        <div *ngIf="bairro.errors.required">Bairro é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="logradouro">Logradouro</label>
+                    <input type="text" [(ngModel)]="endereco.logradouro" id="logradouro" name="logradouro"
+                        #logradouro="ngModel" required class="form-control"
+                        [ngClass]="{ 'is-invalid': f.submitted && logradouro.invalid }"
+                        placeholder="Digite o Logradouro">
+                        <div *ngIf="f.submitted && logradouro.invalid" class="invalid-feedback">
+                            <div *ngIf="logradouro.errors.required">Logradouro é obrigatório</div>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="numero">Número</label>
+                    <input type="number" [(ngModel)]="endereco.numero" id="numero" name="numero" #numero="ngModel"
+                        required class="form-control" [ngClass]="{ 'is-invalid': f.submitted && numero.invalid }"
+                        placeholder="Digite o Número">
+                    <div *ngIf="f.submitted && numero.invalid" class="invalid-feedback">
+                        <div *ngIf="numero.errors.required">Número é obrigatório</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" [(ngModel)]="endereco.complemento" id="complemento" name="complemento" #complemento="ngModel" required
+                        class="form-control" [ngClass]="{ 'is-invalid': f.submitted && complemento.invalid }" placeholder="Digite o Número">
+                </div>
+                <button type="submit" class="btn btn-primary btn-add-endereco">Salvar</button>
+                <button type="reset" class="btn btn-secondary btn-add-endereco" (click)="cleanForm(f)">Cancelar</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -6,10 +6,14 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { EnderecoComponent } from './pages/endereco/endereco.component';
+import { PessoaComponent } from './pages/pessoa/pessoa.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EnderecoComponent,
+    PessoaComponent
   ],
   imports: [
     BrowserModule,

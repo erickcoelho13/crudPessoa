@@ -1,0 +1,74 @@
+{
+  "pessoas": [
+    {
+      "id": 2,
+      "nome": "Teste 2",
+      "email": "teste@teste.com",
+      "cpf": 12345678910,
+      "telefonePrincipal": 0,
+      "telefoneRecado": 0
+    },
+    {
+      "id": 3,
+      "nome": "Teste 3",
+      "email": "teste@teste.com",
+      "cpf": 12345678910,
+      "telefonePrincipal": 8532345678,
+      "telefoneRecado": 8532345678
+    },
+    {
+      "nome": "MARCOS",
+      "email": "MESTRE@MESTRE.COM.BR",
+      "cpf": 123456789,
+      "telefonePrincipal": 212121252525,
+      "telefoneRecado": 212125252525,
+      "id": 4
+    }
+  ],
+  "enderecos": [
+    {
+      "id": 1,
+      "cep": "60140150",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "bairro": "Morumbi",
+      "logradouro": "Rua da Pessoa 2",
+      "numero": "157",
+      "complemento": "AP 201",
+      "pessoaId": 2
+    },
+    {
+      "id": 7,
+      "cep": "60140150",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "bairro": "Morumbi",
+      "logradouro": "Rua da Pessoa 2",
+      "numero": "157",
+      "complemento": "Apartamento da Pessoa 2",
+      "pessoaId": 2
+    },
+    {
+      "id": 5,
+      "cep": "60140150",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "bairro": "Morumbi",
+      "logradouro": "Rua da Pessoa 3",
+      "numero": "157",
+      "complemento": "AP 201",
+      "pessoaId": 3
+    },
+    {
+      "id": 6,
+      "cep": "60140150",
+      "estado": "SP",
+      "cidade": "São Paulo",
+      "bairro": "Morumbi",
+      "logradouro": "Rua da Pessoa 4",
+      "numero": "157",
+      "complemento": "AP 201",
+      "pessoaId": 4
+    }
+  ]
+}

@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { PessoaService } from './services/pessoa.service';
-import { Pessoa } from './models/pessoa';
+import { PessoaService } from '../../services/pessoa.service';
+import { Pessoa } from '../../models/pessoa';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-home',
+  templateUrl: './pessoa.component.html',
+  styleUrls: ['./pessoa.component.css']
 })
-export class AppComponent implements OnInit {
+export class PessoaComponent implements OnInit {
 
   pessoa = {} as Pessoa;
   pessoas: Pessoa[];
 
-  constructor(private pessoaService: PessoaService) {}
-  
+  constructor(private pessoaService: PessoaService) { }
+
   ngOnInit() {
     this.getPessoas();
   }
 
-  // define se um pessoa será criado ou atualizado
+  // Define se uma pessoa será criada ou atualizado
   savePessoa(form: NgForm) {
     if (this.pessoa.id !== undefined) {
       this.pessoaService.updatePessoa(this.pessoa).subscribe(() => {
@@ -32,30 +32,30 @@ export class AppComponent implements OnInit {
     }
   }
 
-  // Chama o serviço para obtém todos as pessoas
+  // Chama o serviço para obter todas as pessoas
   getPessoas() {
     this.pessoaService.getPessoas().subscribe((pessoas: Pessoa[]) => {
       this.pessoas = pessoas;
     });
   }
 
-  // deleta um pessoa
+  // Deleta uma pessoa
   deletePessoa(pessoa: Pessoa) {
     this.pessoaService.deletePessoa(pessoa).subscribe(() => {
       this.getPessoas();
     });
   }
 
-  // copia o pessoa para ser editado.
+  // Copia uma pessoa para ser editado
   editPessoa(pessoa: Pessoa) {
     this.pessoa = { ...pessoa };
   }
 
-  // limpa o formulario
+  // Limpa o formulario
   cleanForm(form: NgForm) {
     this.getPessoas();
     form.resetForm();
-//    pessoa = {} as Pessoa;
+    this.pessoa = {} as Pessoa;
   }
 
 }

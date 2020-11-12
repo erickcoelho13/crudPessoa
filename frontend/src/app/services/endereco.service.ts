@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { Pessoa } from '../models/pessoa';
+import { Endereco } from '../models/endereco';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PessoaService {
+export class EnderecoService {
 
-  url = 'http://localhost:3000/pessoas'; // api rest
+  url = 'http://localhost:8080/enderecos'; // api rest
 
   // Injetando o HttpClient
   constructor(private httpClient: HttpClient) { }
@@ -19,44 +19,53 @@ export class PessoaService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   }
 
-  // Obtem todas as pessoas
-  getPessoas(): Observable<Pessoa[]> {
-    return this.httpClient.get<Pessoa[]>(this.url)
+  // Obtem todos os enderecos
+  getEnderecos(): Observable<Endereco[]> {
+    return this.httpClient.get<Endereco[]>(this.url)
       .pipe(
         retry(2),
         catchError(this.handleError))
   }
 
-  // Obtem uma pessoa pelo id
-  getPessoaById(id: number): Observable<Pessoa> {
-    return this.httpClient.get<Pessoa>(this.url + '/' + id)
+  // Obtem todos endereços pelo id da pessoa
+  getEnderecosByPessoa(id: number): Observable<Endereco[]> {
+    return this.httpClient.get<Endereco[]>(this.url + '/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  // salva uma pessoa
-  savePessoa(pessoa: Pessoa): Observable<Pessoa> {
-    return this.httpClient.post<Pessoa>(this.url, JSON.stringify(pessoa), this.httpOptions)
+  // Obtem um endereco pelo id
+  getEnderecoById(id: number): Observable<Endereco> {
+    return this.httpClient.get<Endereco>(this.url + '/' + id)
       .pipe(
         retry(2),
         catchError(this.handleError)
       )
   }
 
-  // atualiza uma pessoa
-  updatePessoa(pessoa: Pessoa): Observable<Pessoa> {
-    return this.httpClient.put<Pessoa>(this.url + '/' + pessoa.id, JSON.stringify(pessoa), this.httpOptions)
+  // Salva um endereco
+  saveEndereco(endereco: Endereco, id: string): Observable<Endereco> {
+    return this.httpClient.post<Endereco>(this.url + '/' + id, JSON.stringify(endereco), this.httpOptions)
+      .pipe(
+        retry(2),
+        catchError(this.handleError)
+      )
+  }
+
+  // Atualiza um endereco
+  updateEndereco(endereco: Endereco): Observable<Endereco> {
+    return this.httpClient.put<Endereco>(this.url + '/' + endereco.id, JSON.stringify(endereco), this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
       )
   }
 
-  // deleta uma pessoa
-  deletePessoa(pessoa: Pessoa) {
-    return this.httpClient.delete<Pessoa>(this.url + '/' + pessoa.id, this.httpOptions)
+  // Deleta um endereco
+  deleteEndereco(endereco: Endereco) {
+    return this.httpClient.delete<Endereco>(this.url + '/' + endereco.id, this.httpOptions)
       .pipe(
         retry(1),
         catchError(this.handleError)
@@ -76,5 +85,4 @@ export class PessoaService {
     console.log(errorMessage);
     return throwError(errorMessage);
   };
-
 }
